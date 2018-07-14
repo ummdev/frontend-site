@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+
 const Main = styled.div`
   width: 100%;
   height: 100vh;
@@ -8,8 +9,9 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url(picture/not-found.jpg) no-repeat center center fixed;
+  background: url(/picture/not-found.jpg) no-repeat center center fixed;
 `
+
 const Content = styled.div`
   text-align: center;
   font-size: 4em;
