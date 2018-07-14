@@ -15,9 +15,16 @@ class MainPage extends Component {
   }
 
   _handleChange(e) {
-    this.setState({
-      link: e.target.value,
-    })
+    const input = e.target.value
+    if (input.includes(`เลือกตั้ง`) && (input.includes(`ไหม`) || input.includes(`มั้ย`) || input.includes(`เมื่อไหร่`))) {
+      this.setState({
+        link: '/willwehaveAchance2election'
+      })
+    } else {
+      this.setState({
+        link: `/e/${e.target.value}`,
+      })
+    }
   }
 
   _handleKeyPress(e) {
@@ -51,7 +58,7 @@ class MainPage extends Component {
 }
 
 const Main = styled.div`
-  background: url(picture/background.jpg) no-repeat center center fixed;
+  background: url(/picture/background.jpg) no-repeat center center fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
