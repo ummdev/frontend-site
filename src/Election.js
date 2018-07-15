@@ -52,7 +52,8 @@ class Election extends Component {
     super(props)
     this.state = ({
       hidden: false,
-      show: true,
+      show: false,
+      final: false,
       data: {
         labels: ["ประยุทธ์", "ทักษิณ", "อภิสิทธ์", "ยิ่งลักษณ์", "ชวน"],
         datasets: [{
@@ -97,10 +98,16 @@ class Election extends Component {
   componentDidMount() {
     setTimeout(function () {
       this.setState({
-        show: !this.state.show,
         hidden: !this.state.hidden,
+        show: !this.state.show,
       });
     }.bind(this), 5000)
+    setTimeout(function () {
+      this.setState({
+        show: !this.state.show,
+        final: !this.state.final,
+      })
+    }.bind(this), 10000)
   }
 
   render() {
@@ -115,7 +122,14 @@ class Election extends Component {
         </Loader>
         <None style={this.state.hidden ? {display: 'flex'} : {display: 'none'}}>
           <Bar data={this.state.data} width={500} height={1000} options={this.state.option}/>
-          <h1 style={{textAlign: 'center', color: 'red'}}>ไม่มีว้อย!</h1>
+          <p style={this.state.show ? {
+              textAlign: 'center',
+              color: 'black',
+            } : {display: 'none'}}>กำลังประมวลผล.. ไม่นานกว่า BTS ซ่อมเสร็จแน่นอน</p>
+          <h1 style={this.state.final ? {
+              textAlign: 'center',
+              color: 'red',
+            } : {display: 'none'}}>อ้าว! คุณไม่รู้หรอ? วัน...ไงล่ะ</h1>
           <Back to="/">ทำใจและกลับหน้าหลัก</Back>
         </None>
       </Main>
