@@ -100,7 +100,7 @@ class Election extends Component {
         show: !this.state.show,
         hidden: !this.state.hidden,
       });
-    }.bind(this), 1000)
+    }.bind(this), 5000)
   }
 
   render() {
