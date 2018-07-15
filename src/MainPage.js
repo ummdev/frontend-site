@@ -27,7 +27,7 @@ class MainPage extends Component {
 
   _handleChange(e) {
     const input = e.target.value
-    if (input.includes(`เลือกตั้ง`) && (input.includes(`ไหม`) || input.includes(`มั้ย`) || input.includes(`เมื่อไหร่`))) {
+    if (input.includes(`เลือกตั้ง`) && (input.includes(`ไหม`) || input.includes(`มั้ย`) || input.includes(`เมื่อไหร่`) || input.includes(`ตอนไหน`))) {
       this.setState({
         link: '/willwehaveAchance2election'
       })
