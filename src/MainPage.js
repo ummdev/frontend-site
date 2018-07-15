@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import FontAwesome from 'react-fontawesome'
+import axios from 'axios'
 
 class MainPage extends Component {
   constructor(props) {
@@ -9,9 +10,19 @@ class MainPage extends Component {
     this.state = {
       link: '/',
       submit: false,
+      tag: '',
     }
     this._handleChange = this._handleChange.bind(this)
     this._handleKeyPress = this._handleKeyPress.bind(this)
+  }
+
+  componentDidMount() {
+    axios.get('https://us-central1-ummproject-b4a9c.cloudfunctions.net/getSearch')
+      .then(({data}) => {
+        this.setState({
+          tag: data.massage
+        })
+      })
   }
 
   _handleChange(e) {
@@ -20,6 +31,8 @@ class MainPage extends Component {
       this.setState({
         link: '/willwehaveAchance2election'
       })
+    } else if (input.includes(`เงี่ยน`)) {
+      window.location.replace("https://soundpornstar.firebaseapp.com/");
     } else {
       this.setState({
         link: `/e/${e.target.value}`,
@@ -51,7 +64,7 @@ class MainPage extends Component {
             <FontAwesome name="search" style={{color: '#999'}}/>
           </SearchButton>
         </SearchSection>
-        <Protip>Protip: Let's try to type "XXX"</Protip>
+        <Protip>Protip: Let's try to type {`"${this.state.tag}"`}</Protip>
       </Main>
     )
   }
